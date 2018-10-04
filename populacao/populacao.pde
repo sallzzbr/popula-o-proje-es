@@ -1,4 +1,7 @@
 Barras homens;
+Barras jovens_homens;
+Barras mulheres;
+Barras jovens_mulheres;
 
 Table tabela;
 int tL;
@@ -16,12 +19,15 @@ void setup() {
   tL = tabela.getRowCount();
   println(tL);
   currentPage = 0;
-  homens = new Barras(width*0.625, H, "homem");
+  joH = tabela.getInt(currentPage, "jovens_homens");
+  joM = tabela.getInt(currentPage, "jovens_mulheres");
+  H = tabela.getInt(currentPage, "homens");
+  M = tabela.getInt(currentPage, "mulheres");
 }
 
 void draw() {
  background(255); 
- homens.run();
+ 
  //ELEMENTOS INTERFACE
  noStroke();
  fill(211);
@@ -46,6 +52,15 @@ void draw() {
  //BOTÃO
  ellipseMode(CENTER);
  ellipse(width/2, height - 25, 45, 45);
+ //Barras OBJECTS
+ homens = new Barras(width*0.875, H, "homem");
+ jovens_homens = new Barras(width*0.625, joH, "jovem_homem");
+ mulheres = new Barras((width*0.75)/2, M, "mulher");
+ jovens_mulheres = new Barras(width/8, joM, "jovem_mulher");
+ homens.run();
+ jovens_homens.run();
+ mulheres.run();
+ jovens_mulheres.run();
 }
 
 void mousePressed() {
