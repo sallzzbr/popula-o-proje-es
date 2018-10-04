@@ -5,13 +5,12 @@ Barras jovens_mulheres;
 
 Table tabela;
 int tL;
-String[] year = { "Press start", "2010", "2020", "2030" };
+String[] year = { "2010", "2020", "2030" };
 int joH;
 int joM;
 int H;
 int M;
 int currentPage;
-int currentYear;
 
 void setup() {
   size(800, 600);
@@ -38,7 +37,7 @@ void draw() {
  //TEXTOS
  textAlign(CENTER);
  textSize(32);
- text(year[currentYear], width/2, 35); 
+ text(year[currentPage], width/2, 35); 
  textSize(24);
  text("Mulheres", width/4, 85);
  text("Homens", width*0.75, 85);
@@ -47,8 +46,6 @@ void draw() {
  text("Adultas", (width*0.75)/2, 110);
  text("Jovens", width*0.625, 110);
  text("Adultos", width*0.875, 110);
- //VARIÁVEIS
- currentYear = 0;
  //BOTÃO
  ellipseMode(CENTER);
  ellipse(width/2, height - 25, 45, 45);

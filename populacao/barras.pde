@@ -6,7 +6,7 @@ class Barras {
   
   Barras(float get_x, int get_tall, String get_type) {
     x_pos = get_x;
-    tall = get_tall;
+    tall = get_tall*10;
     type = get_type;
   }
   
@@ -15,9 +15,9 @@ class Barras {
   }
   
   void display(){
-    rectMode(CENTER);
+    rectMode(CORNER);
     fill(150);
-    rect(x_pos, height - 50, 50, tall);
+    rect(x_pos, height - 50 - tall, 50, tall);
   }
   
 }
