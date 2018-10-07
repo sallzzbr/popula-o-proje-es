@@ -35,7 +35,9 @@ void draw() {
  if(ready) { 
   for(int j = 0; j < bolitas.size(); j++){
    for(int i = 1; i < bolitas.size(); i++){
-     bolitas.get(j).collide(bolitas.get(i));
+     if(j != i){
+       bolitas.get(j).collide(bolitas.get(i));
+     }
    }
   }
  }
