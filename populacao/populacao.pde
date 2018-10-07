@@ -11,6 +11,7 @@ int joM;
 int H;
 int M;
 int currentPage;
+boolean ready;
 
 final static ArrayList<Bolas> bolitas = new ArrayList(); 
 
@@ -24,11 +25,24 @@ void setup() {
   joM = tabela.getInt(currentPage, "jovens_mulheres");
   H = tabela.getInt(currentPage, "homens");
   M = tabela.getInt(currentPage, "mulheres");
+  ready = false;
 }
 
 void draw() {
  background(255); 
- for (Bolas b: bolitas)   b.run();
+ for (Bolas b: bolitas){
+   b.update();
+   b.display();
+   b.checkBoundaryCollision();
+ }
+ if (ready) { 
+   for(int i = 0; i < bolitas.size(); i++) {
+     bolitas.get(0).checkCollision(bolitas.get(i)); 
+   }
+   for(int i = bolitas.size(); i >= 0; i--) {
+     bolitas.get(0).checkCollision(bolitas.get(i));
+   }
+ }
  //ELEMENTOS INTERFACE
  noStroke();
  fill(211);
@@ -66,8 +80,10 @@ void mousePressed() {
   if(mouseX >= (width/2 - 22.5) && mouseX <= (width/2 + 22.5) && mouseY >= (height - 25 - 22.5) && mouseY <= (height - 25 + 22.5)){
     if (currentPage < 2){
       currentPage++;
+      ready = true;
     } else {
       currentPage = 0;
+      ready = false;
     }
      joH = tabela.getInt(currentPage, "jovens_homens");
      joM = tabela.getInt(currentPage, "jovens_mulheres");
