@@ -11,8 +11,13 @@ int joM;
 int H;
 int M;
 int currentPage;
+Boolean ballsRun = false;
 
-final static ArrayList<Bolas> bolitas = new ArrayList(); 
+int numBalls = 12;
+float spring = 0.05;
+float gravity = 0.03;
+float friction = -0.9;
+Bolas[] balls = new Bolas[numBalls];
 
 void setup() {
   size(800, 600);
@@ -31,15 +36,16 @@ void draw() {
  
  //ELEMENTOS INTERFACE
  noStroke();
- fill(211);
+ fill(0);
  rectMode(CENTER);
  rect(width/2, 25, width, 50);
  rect(width/2, height-25, width, 50);
- fill(0);
  //TEXTOS
+ fill(255);
  textAlign(CENTER);
  textSize(32);
  text(year[currentPage], width/2, 35); 
+ fill(0);
  textSize(24);
  text("Mulheres", width/4, 85);
  text("Homens", width*0.75, 85);
@@ -49,6 +55,7 @@ void draw() {
  text("Jovens", width*0.625, 110);
  text("Adultos", width*0.875, 110);
  //BOTÃO
+ fill(255);
  ellipseMode(CENTER);
  ellipse(width/2, height - 25, 45, 45);
  //Barras OBJECTS
@@ -60,15 +67,24 @@ void draw() {
  jovens_homens.run();
  mulheres.run();
  jovens_mulheres.run();
- for (Bolas b: bolitas)   b.display();
+ if (ballsRun){
+  for (Bolas ball : balls) {
+    ball.collide();
+    ball.move();
+    ball.display();  
+  } 
+ }
 }
 
 void mousePressed() {
   if(mouseX >= (width/2 - 22.5) && mouseX <= (width/2 + 22.5) && mouseY >= (height - 25 - 22.5) && mouseY <= (height - 25 + 22.5)){
     if (currentPage < 2){
-      currentPage++;
+      currentPage++;    
+      ballsRun = true;
+      
     } else {
       currentPage = 0;
+      ballsRun = false;
     }
      joH = tabela.getInt(currentPage, "jovens_homens");
      joM = tabela.getInt(currentPage, "jovens_mulheres");
@@ -79,14 +95,11 @@ void mousePressed() {
     println(joM);
     println(H);
     println(M);
-    if (bolitas.size() > 0){
-      for(int i = 0; i < bolitas.size(); i++){
-        bolitas.remove(i);
-      }
+ 
+    for (int i = 0; i < numBalls; i++) {
+      balls[i] = new Bolas(width/2, i, balls);
     }
-    for(int i = 0; i < M; i++){
-      bolitas.add( new Bolas(200, 100, color(255, 10, 100)));
-    }
-    println("foi", bolitas.size());
+    noStroke();
+    fill(255, 204);
   }
 }

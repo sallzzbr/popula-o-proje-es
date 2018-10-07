@@ -1,15 +1,20 @@
 class Bolas {
   
-  Bolas() {
-    
+  float maxX; 
+  float minX; 
+  float defX;
+  color colour;
+  
+  Bolas(float tempmaxX, float tempminX, color tempColour) {
+    maxX = tempmaxX; 
+    minX = tempminX; 
+    defX = random(tempminX,tempmaxX);
+    colour = tempColour;
   }
   
-  void run(){
-    display();
-  }
-  
-  void display(){
-    
-  }
+  void display(){ 
+    fill(colour); 
+    ellipse(defX,50,25,25); 
+  } 
   
 }
