@@ -38,24 +38,24 @@ class Bolas {
     speedY = speedY + gravity;
     defX = defX + speedX;
     if (type == "jom") {
-      if(ballY >= height-482.5){
+      if(ballY >= height-450){
         speedY = speedY * -0.75;
-        ballY = height-482.5;
+        ballY = height-450;
       } 
     } else if (type == "m") {
-      if(ballY >= height-345){
+      if(ballY >= height-325){
         speedY = speedY * -0.75;
-        ballY = height-345;
+        ballY = height-325;
       } 
     } else if (type == "joh") {
-      if(ballY >= height-207.5){
+      if(ballY >= height-200){
         speedY = speedY * -0.75;
-        ballY = height-207.5;
+        ballY = height-200;
       } 
     } else {
-      if(ballY >= height-70){
+      if(ballY >= height-75){
         speedY = speedY * -0.75;
-        ballY = height-70;
+        ballY = height-75;
       }
     }
     if(ballY <= 35) {

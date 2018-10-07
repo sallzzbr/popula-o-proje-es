@@ -5,7 +5,7 @@
 
 Table tabela;
 int tL;
-String[] year = { "2010", "2020", "2030" };
+String[] year = { "Press the button to start", "2010", "2020", "2030" };
 int joH;
 int joM;
 int H;
@@ -43,24 +43,30 @@ void draw() {
  //}
  //ELEMENTOS INTERFACE
  noStroke();
- fill(211);
+ fill(0);
  rectMode(CENTER);
  rect(width/2, 25, width, 50);
  rect(width/2, height-25, width, 50);
- fill(0);
+ fill(255);
  //TEXTOS
  textAlign(CENTER);
  textSize(32);
  text(year[currentPage], width/2, 35); 
- textSize(24);
- text("Mulheres", width/4, 85);
- text("Homens", width*0.75, 85);
+ //textSize(24);
+ //text("Mulheres", width/4, 85);
+ //text("Homens", width*0.75, 85);
+ textAlign(LEFT);
  textSize(18);
- text("Jovens", width/8, 110);
- text("Adultas", (width*0.75)/2, 110);
- text("Jovens", width*0.625, 110);
- text("Adultos", width*0.875, 110);
+ fill(255, 204, 230);
+ text("Jovens mulheres", width/8, 75);
+ fill(255, 77, 166);
+ text("Adultas", width/8, 200);
+ fill(179, 209, 255);
+ text("Jovens homens", width/8, 325);
+ fill(0, 102, 255);
+ text("Adultos", width/8, 450);
  //BOTÃO
+ fill(255);
  ellipseMode(CENTER);
  ellipse(width/2, height - 25, 45, 45);
  //Barras OBJECTS
@@ -76,7 +82,7 @@ void draw() {
 
 void mousePressed() {
   if(mouseX >= (width/2 - 22.5) && mouseX <= (width/2 + 22.5) && mouseY >= (height - 25 - 22.5) && mouseY <= (height - 25 + 22.5)){
-    if (currentPage < 2){
+    if (currentPage < 3){
       currentPage++;
       //ready = true;
     } else {
