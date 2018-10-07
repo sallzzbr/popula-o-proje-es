@@ -1,7 +1,7 @@
-//Barras homens;
-//Barras jovens_homens;
-//Barras mulheres;
-//Barras jovens_mulheres;
+Barras homens;
+Barras jovens_homens;
+Barras mulheres;
+Barras jovens_mulheres;
 
 Table tabela;
 int tL;
@@ -12,7 +12,11 @@ int H;
 int M;
 int currentPage;
 
-//boolean ready;
+int wideCount;
+int highCount;
+int count;
+
+boolean ready;
 
 final static ArrayList<Bolas> bolitas = new ArrayList(); 
 
@@ -26,21 +30,21 @@ void setup() {
   joM = tabela.getInt(currentPage, "jovens_mulheres");
   H = tabela.getInt(currentPage, "homens");
   M = tabela.getInt(currentPage, "mulheres");
-  //ready = false;
+  ready = false;
 }
 
 void draw() {
  background(255); 
  for (Bolas b: bolitas)   b.run();
- //if(ready) { 
- // for(int j = 0; j < bolitas.size(); j++){
- //  for(int i = 1; i < bolitas.size(); i++){
- //    if(j != i){
- //      bolitas.get(j).collide(bolitas.get(i));
- //    }
- //  }
- // }
- //}
+ if(ready) { 
+  for(int j = 0; j < bolitas.size(); j++){
+   for(int i = 1; i < bolitas.size(); i++){
+     if(j != i){
+       bolitas.get(j).collide(bolitas.get(i));
+     }
+   }
+  }
+ }
  //ELEMENTOS INTERFACE
  noStroke();
  fill(211);
@@ -64,24 +68,24 @@ void draw() {
  ellipseMode(CENTER);
  ellipse(width/2, height - 25, 45, 45);
  //Barras OBJECTS
- //homens = new Barras(width*0.875, H, "homem");
- //jovens_homens = new Barras(width*0.625, joH, "jovem_homem");
- //mulheres = new Barras((width*0.75)/2, M, "mulher");
- //jovens_mulheres = new Barras(width/8, joM, "jovem_mulher");
- //homens.run();
- //jovens_homens.run();
- //mulheres.run();
- //jovens_mulheres.run();
+ homens = new Barras(width*0.875, H, "homem");
+ jovens_homens = new Barras(width*0.625, joH, "jovem_homem");
+ mulheres = new Barras((width*0.75)/2, M, "mulher");
+ jovens_mulheres = new Barras(width/8, joM, "jovem_mulher");
+ homens.run();
+ jovens_homens.run();
+ mulheres.run();
+ jovens_mulheres.run();
 }
 
 void mousePressed() {
   if(mouseX >= (width/2 - 22.5) && mouseX <= (width/2 + 22.5) && mouseY >= (height - 25 - 22.5) && mouseY <= (height - 25 + 22.5)){
     if (currentPage < 2){
       currentPage++;
-      //ready = true;
+      ready = true;
     } else {
       currentPage = 0;
-      //ready = false;
+      ready = false;
     }
      joH = tabela.getInt(currentPage, "jovens_homens");
      joM = tabela.getInt(currentPage, "jovens_mulheres");
@@ -97,18 +101,25 @@ void mousePressed() {
         bolitas.clear();
       //}
     }
-      for(int i = 0; i < joM; i++){
-        bolitas.add( new Bolas(175, 25, color(255, 204, 230, 125), "jom"));
-      }
-      for(int i = 0; i < M; i++){
-        bolitas.add( new Bolas(375, 225, color(255, 77, 166, 125), "m"));
-      }
-      for(int i = 0; i < joH; i++){
-        bolitas.add( new Bolas(575, 425, color(179, 209, 255, 125), "joh"));
-      }
-      for(int i = 0; i < H; i++){
-        bolitas.add( new Bolas(775, 625, color(0, 102, 255, 125), "h"));
-      }
+      //for(int i = 0; i < joM; i++){
+        wideCount = 200 / joM;
+        highCount = 400 / joM;
+        count = wideCount * highCount;
+        for (int y = 0; y < highCount; y++){
+          for (int x = 0; x < wideCount; x++) {
+            bolitas.add( new Bolas(25, x*joM, y*joM, color(255, 204, 230, 125), joM));
+          }
+        }
+      //}
+      //for(int i = 0; i < M; i++){
+      //  bolitas.add( new Bolas(225, color(255, 77, 166, 125)));
+      //}
+      //for(int i = 0; i < joH; i++){
+      //  bolitas.add( new Bolas(425, color(179, 209, 255, 125)));
+      //}
+      //for(int i = 0; i < H; i++){
+      //  bolitas.add( new Bolas(625, color(0, 102, 255, 125)));
+      //}
     println("foi", bolitas.size());
   }
 }

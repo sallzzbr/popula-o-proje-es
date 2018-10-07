@@ -8,8 +8,9 @@ class Bolas {
   float speedX;
   float ballY;
   float gravity;
+  String type;
   
-  Bolas(float tempmaxX, float tempminX, color tempColour) {
+  Bolas(float tempmaxX, float tempminX, color tempColour, String tempType) {
     maxX = tempmaxX; 
     minX = tempminX; 
     defX = random(tempminX,tempmaxX);
@@ -18,6 +19,7 @@ class Bolas {
     speedX = random(-2, 2);
     ballY = random(40,50);
     gravity = 0.1;
+    type = tempType;
   }
   
   void run() {
@@ -28,16 +30,33 @@ class Bolas {
   void display(){ 
     fill(colour); 
     ellipseMode(RADIUS);
-    ellipse(defX,ballY,10,10); 
+    ellipse(defX,ballY,25,25); 
   } 
   
   void move(){
     ballY = ballY + speedY;
     speedY = speedY + gravity;
     defX = defX + speedX;
-    if(ballY >= height-50){
-      speedY = speedY * -0.95;
-      ballY = height-50;
+    if (type == "jom") {
+      if(ballY >= height-482.5){
+        speedY = speedY * -0.75;
+        ballY = height-482.5;
+      } 
+    } else if (type == "m") {
+      if(ballY >= height-345){
+        speedY = speedY * -0.75;
+        ballY = height-345;
+      } 
+    } else if (type == "joh") {
+      if(ballY >= height-207.5){
+        speedY = speedY * -0.75;
+        ballY = height-207.5;
+      } 
+    } else {
+      if(ballY >= height-70){
+        speedY = speedY * -0.75;
+        ballY = height-70;
+      }
     }
     if(ballY <= 35) {
       speedY = speedY * -1;
@@ -47,23 +66,23 @@ class Bolas {
     }
   }
   
-  void collide(Bolas other){
-    if (dist(defX, ballY, other.defX, other.ballY) < 25){
-      //println("ui");
-      //ballY = ballY + random(-5,5);
-      //other.ballY = other.ballY + random(-5,5);
-      //defX = defX - 5;
-      //other.defX = other.defX + 5;
-      //other.speedX = other.speedX * -1;
-      if (ballY >= height-50){
-        speedX = speedX * -0.95;
-        speedY = speedY * -0.95;
-      } else {
-        speedX = speedX * -1;
-        //speedY = speedY * -1;
-      }
-      //colour = color(0);
-    }
-  }
+  //void collide(Bolas other){
+  //  if (dist(defX, ballY, other.defX, other.ballY) < 25){
+  //    //println("ui");
+  //    //ballY = ballY + random(-5,5);
+  //    //other.ballY = other.ballY + random(-5,5);
+  //    //defX = defX - 5;
+  //    //other.defX = other.defX + 5;
+  //    //other.speedX = other.speedX * -1;
+  //    if (ballY >= height-60){
+  //      speedX = speedX * -0.95;
+  //      speedY = speedY * -0.95;
+  //    } else {
+  //      speedX = speedX * -1;
+  //      //speedY = speedY * -1;
+  //    }
+  //    //colour = color(0);
+  //  }
+  //}
   
 }
