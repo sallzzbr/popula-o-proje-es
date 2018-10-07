@@ -5,6 +5,7 @@ class Bolas {
   float defX;
   color colour;
   float speedY;
+  float speedX;
   float ballY;
   
   Bolas(float tempmaxX, float tempminX, color tempColour) {
@@ -12,7 +13,8 @@ class Bolas {
     minX = tempminX; 
     defX = random(tempminX,tempmaxX);
     colour = tempColour;
-    speedY = random(1, 3);
+    speedY = random(1, 2);;
+    speedX = random(-2, 2);
     ballY = random(0,50);
   }
   
@@ -28,8 +30,12 @@ class Bolas {
   
   void move(){
     ballY = ballY + speedY;
+    defX = defX + speedX;
     if(ballY >= height-75){
-      speedY = 0;
+      speedY = speedY * -1;
+    }
+    if (defX <= 25 || defX >= width - 25) {
+      speedX = speedX * -1;
     }
   }
   
