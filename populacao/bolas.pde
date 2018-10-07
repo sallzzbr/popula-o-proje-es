@@ -25,7 +25,7 @@ class Bolas {
   
   void display(){ 
     fill(colour); 
-    ellipse(defX,ballY,50,50); 
+    ellipse(defX,ballY,5,5); 
   } 
   
   void move(){
@@ -35,6 +35,17 @@ class Bolas {
       speedY = speedY * -1;
     }
     if (defX <= 25 || defX >= width - 25) {
+      speedX = speedX * -1;
+    }
+  }
+  
+  void collide(Bolas other){
+    if (dist(defX, ballY, other.defX, other.ballY) < 5){
+      println("ui");
+      //ballY = ballY + random(-5,5);
+      //other.ballY = other.ballY + random(-5,5);
+      //defX = defX + random(-5,5);
+      //other.defX = other.defX + random(-5,5);
       speedX = speedX * -1;
     }
   }
