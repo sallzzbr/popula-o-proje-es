@@ -28,7 +28,7 @@ void setup() {
 
 void draw() {
  background(255); 
- 
+ for (Bolas b: bolitas)   b.display();
  //ELEMENTOS INTERFACE
  noStroke();
  fill(211);
@@ -60,7 +60,6 @@ void draw() {
  jovens_homens.run();
  mulheres.run();
  jovens_mulheres.run();
- for (Bolas b: bolitas)   b.display();
 }
 
 void mousePressed() {
@@ -84,8 +83,17 @@ void mousePressed() {
         bolitas.remove(i);
       }
     }
+    for(int i = 0; i < joM; i++){
+      bolitas.add( new Bolas(175, 25, color(255, 204, 230)));
+    }
     for(int i = 0; i < M; i++){
-      bolitas.add( new Bolas(200, 100, color(255, 10, 100)));
+      bolitas.add( new Bolas(375, 225, color(255, 77, 166)));
+    }
+    for(int i = 0; i < joH; i++){
+      bolitas.add( new Bolas(575, 425, color(179, 209, 255)));
+    }
+    for(int i = 0; i < H; i++){
+      bolitas.add( new Bolas(775, 625, color(0, 102, 255)));
     }
     println("foi", bolitas.size());
   }

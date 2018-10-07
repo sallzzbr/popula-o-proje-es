@@ -14,7 +14,7 @@ class Bolas {
   
   void display(){ 
     fill(colour); 
-    ellipse(defX,50,25,25); 
+    ellipse(defX,50,50,50); 
   } 
   
 }

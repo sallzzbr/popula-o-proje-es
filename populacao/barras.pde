@@ -16,8 +16,16 @@ class Barras {
   
   void display(){
     rectMode(CORNER);
-    fill(150);
-    rect(x_pos, height - 50 - tall, 50, tall);
+    if( type == "jovem_mulher"){
+      fill(255, 204, 230);
+    } else if( type == "mulher"){
+      fill(255, 77, 166);
+    } else if( type == "jovem_homem") {
+      fill(179, 209, 255);
+    } else {
+      fill(0, 102, 255);
+    }
+    rect(x_pos-25, height - 50 - tall, 50, tall);
   }
   
 }
