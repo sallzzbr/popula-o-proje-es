@@ -28,7 +28,7 @@ void setup() {
 
 void draw() {
  background(255); 
- for (Bolas b: bolitas)   b.display();
+ for (Bolas b: bolitas)   b.run();
  //ELEMENTOS INTERFACE
  noStroke();
  fill(211);
@@ -79,22 +79,22 @@ void mousePressed() {
     println(H);
     println(M);
     if (bolitas.size() > 0){
-      for(int i = 0; i < bolitas.size(); i++){
-        bolitas.remove(i);
+      //for(int i = 0; i < bolitas.size(); i++){
+        bolitas.clear();
+      //}
+    }
+      for(int i = 0; i < joM; i++){
+        bolitas.add( new Bolas(175, 25, color(255, 204, 230, 125)));
       }
-    }
-    for(int i = 0; i < joM; i++){
-      bolitas.add( new Bolas(175, 25, color(255, 204, 230)));
-    }
-    for(int i = 0; i < M; i++){
-      bolitas.add( new Bolas(375, 225, color(255, 77, 166)));
-    }
-    for(int i = 0; i < joH; i++){
-      bolitas.add( new Bolas(575, 425, color(179, 209, 255)));
-    }
-    for(int i = 0; i < H; i++){
-      bolitas.add( new Bolas(775, 625, color(0, 102, 255)));
-    }
+      for(int i = 0; i < M; i++){
+        bolitas.add( new Bolas(375, 225, color(255, 77, 166, 125)));
+      }
+      for(int i = 0; i < joH; i++){
+        bolitas.add( new Bolas(575, 425, color(179, 209, 255, 125)));
+      }
+      for(int i = 0; i < H; i++){
+        bolitas.add( new Bolas(775, 625, color(0, 102, 255, 125)));
+      }
     println("foi", bolitas.size());
   }
 }
